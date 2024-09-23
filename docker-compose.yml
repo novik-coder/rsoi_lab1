@@ -1,4 +1,6 @@
-version: "3"
+volumes:
+  db-data:
+
 services:
   postgres:
     image: library/postgres:13
@@ -14,5 +16,14 @@ services:
     ports:
       - "5432:5432"
 
-volumes:
-  db-data:
+  app:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbs:postgresql://postgres:5432/postgres'
+      #JAVA_OPTS: '-Xmx512m'
+
