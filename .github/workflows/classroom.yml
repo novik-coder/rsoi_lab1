@@ -8,12 +8,18 @@ on:
       - master
 jobs:
   build:
-    name: Autograding
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Clear 
+        run: mvn clean install
+
+      - name: Build
+        run: mvn build
 
       # TODO build, test and deploy project
 

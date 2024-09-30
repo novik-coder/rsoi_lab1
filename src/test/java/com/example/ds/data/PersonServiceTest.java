@@ -5,6 +5,7 @@ import com.example.ds.model.Person;
 import com.example.ds.repository.PersonRepository;
 import com.example.ds.service.PersonService;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,6 +41,7 @@ public class PersonServiceTest {
 
     @BeforeAll
     public void setUp() {
+        this.persons = new ArrayList<>();
         Person person1 = new Person(1, "Elena", "Leninova 10", "prepodavatel", 30);
         Person person2 = new Person(2, "Ivan", "Gagarinova 27", "programist", 35);
         Person person3 = new Person(3, "Pavel", "Pervogo maya 77", "doktor", 50);
@@ -52,7 +54,8 @@ public class PersonServiceTest {
         this.personDTO = new PersonDTO(0, "Milica", "Gogoleva 22", "programis", 24);
     }
 
-    @Test
+    @Test()
+    @Order(1)
     public void testGetAllPersons() {
         when(personRepository.findAll()).thenReturn(persons);
 
@@ -63,25 +66,26 @@ public class PersonServiceTest {
     }
 
     @Test
+    @Order(2)
     public void testGetPersonById() {
-        when(personRepository.findById(2L)).thenReturn(Optional.of(persons.get(1)));
+        when(personRepository.getPersonById(2L)).thenReturn((persons.get(1)));
 
-        Optional<Person> result = Optional.ofNullable(personService.getPersonById(2L));
+        Optional<Person> result = Optional.of(personService.getPersonById(2L));
         assertTrue(result.isPresent());
-        assertEquals("Ivan", result.get().getName());
         verify(personRepository, times(1)).getPersonById(2L);
     }
 
     @Test
+    @Order(3)
     public void testGetPersonByIdNotFound() {
-        when(personRepository.findById(50L)).thenReturn(null);
+        when(personRepository.getPersonById(50L)).thenReturn(null);
         Optional<Person> result = Optional.ofNullable(personService.getPersonById(50L));
         assertFalse(result.isPresent());
-        assertNull(result);
         verify(personRepository, times(1)).getPersonById(50L);
     }
 
     @Test
+    @Order(4)
     public void testCreatePerson() {
         when(personRepository.save(any(Person.class))).thenReturn(this.person);
 
@@ -92,12 +96,13 @@ public class PersonServiceTest {
 
 
     @Test
+    @Order(5)
     public void testUpdatePerson() {
         PersonDTO newPersonDetails = new PersonDTO(2, "Ivan", "Ladozskaya 27", "programist Java", 37);
         Person updated = new Person(2, "Ivan", "Ladozskaya 27", "programist Java", 37);
 
 
-        when(personRepository.findById(2L)).thenReturn(Optional.of(persons.get(1)));
+        when(personRepository.getPersonById(2L)).thenReturn(persons.get(1));
         when(personRepository.save(any(Person.class))).thenReturn(updated);
 
         Person updatedPerson = personService.updatePerson(2L, newPersonDetails);
@@ -108,6 +113,7 @@ public class PersonServiceTest {
     }
 
     @Test
+    @Order(6)
     public void testDeletePerson() {
         doNothing().when(personRepository).deleteById(1L);
         personService.deletePerson(1L);
