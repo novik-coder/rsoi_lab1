@@ -21,6 +21,22 @@ jobs:
       - name: Build
         run: mvn build
 
+  test:
+    name: Unit test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Clear
+        run: mvn clean install
+
+      - name: Unit test
+        run: mvn test
+
+
       # TODO build, test and deploy project
 
       - name: Run API Tests
