@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>ds</artifactId>
@@ -30,6 +30,7 @@
 		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 	<dependencies>
 
@@ -75,13 +76,24 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>3.1.0</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version> <!-- Используйте актуальную версию -->
 				<configuration>
-<!--				sdf	j-->
+					<source>17</source>
 					<target>17</target>
+					<release>17</release>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-antrun-plugin</artifactId>-->
+<!--				<version>3.1.0</version>-->
+<!--				<configuration>-->
+<!--&lt;!&ndash;				sdf	j&ndash;&gt;-->
+<!--					<target>17</target>-->
+
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
