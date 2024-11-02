@@ -1,174 +1,118 @@
-openapi: 3.0.1
+openapi: 3.0.0
 info:
-  title: OpenAPI definition
-  version: v1
-servers:
-- url: http://localhost:8080
+  title: Person API
+  version: 1.0.0
+  description: API for managing person records.
+
 paths:
-  /api/v1/persons:
+  /persons:
     get:
-      tags:
-      - Person REST API operations
-      summary: Get all Persons
-      operationId: listPersons
+      summary: Retrieve all persons
+      operationId: getAllPersons
       responses:
-        "200":
-          description: All Persons
+        '200':
+          description: A list of persons
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PersonResponse'
+                  $ref: '#/components/schemas/Person'
+    
     post:
-      tags:
-      - Person REST API operations
-      summary: Create new Person
+      summary: Create a new person
       operationId: createPerson
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PersonRequest'
-        required: true
+              $ref: '#/components/schemas/Person'
       responses:
-        "201":
-          description: Created new Person
-          headers:
-            Location:
-              description: Path to new Person
-              style: simple
-              schema:
-                type: string
-        "400":
-          description: Invalid data
+        '201':
+          description: Person created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponse'
-  /api/v1/persons/{id}:
+                $ref: '#/components/schemas/Person'
+
+  /persons/{personId}:
     get:
-      tags:
-      - Person REST API operations
-      summary: Get Person by ID
-      operationId: getPerson
+      summary: Retrieve a person by ID
+      operationId: getPersonById
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        "200":
-          description: Person for ID
+        '200':
+          description: A person object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonResponse'
-        "404":
-          description: Not found Person for ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-    delete:
-      tags:
-      - Person REST API operations
-      summary: Remove Person by ID
-      operationId: editPerson_1
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
-      responses:
-        "204":
-          description: Person for ID was removed
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found
+
     patch:
-      tags:
-      - Person REST API operations
-      summary: Update Person by ID
-      operationId: editPerson
+      summary: Update an existing person
+      operationId: updatePerson
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PersonRequest'
-        required: true
+              $ref: '#/components/schemas/Person'
       responses:
-        "200":
-          description: Person for ID was updated
+        '200':
+          description: Person updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonResponse'
-        "400":
-          description: Invalid data
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorResponse'
-        "404":
-          description: Not found Person for ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found
+
+    delete:
+      summary: Delete a person
+      operationId: deletePerson
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Person deleted successfully
+        '404':
+          description: Person not found
+
 components:
   schemas:
-    ValidationErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-    PersonRequest:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-        age:
-          type: integer
-          format: int32
-        address:
-          type: string
-        work:
-          type: string
-    PersonResponse:
-      required:
-      - id
-      - name
+    Person:
       type: object
       properties:
         id:
-          type: integer
-          format: int32
+          type: string
+          example: "123"
         name:
           type: string
+          example: "John Doe"
         age:
           type: integer
-          format: int32
-        address:
+          example: 30
+        email:
           type: string
-        work:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
+          example: "johndoe@example.com"
+      required:
+        - name
+        - age
