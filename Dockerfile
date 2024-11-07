@@ -1,4 +1,4 @@
-# 基础镜像改为官方的 Docker Hub 镜像
+# 使用 Docker Hub 镜像
 FROM maven:3.8.6-openjdk-17 AS build
 
 # 设置工作目录
