@@ -1,4 +1,4 @@
-# 使用 Maven 官方镜像作为构建环境
+# 基础镜像改为官方的 Docker Hub 镜像
 FROM maven:3.8.6-openjdk-17 AS build
 
 # 设置工作目录
@@ -21,5 +21,3 @@ EXPOSE 8080
 
 # 启动应用
 CMD ["java", "-jar", "/app/myapp.jar"]
-
-
