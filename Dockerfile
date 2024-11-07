@@ -1,5 +1,6 @@
 # 使用 Maven 和 OpenJDK 作为基础镜像
-FROM maven:3.8.6-openjdk-17 AS build
+FROM maven:latest AS build
+
 
 # 设置工作目录
 WORKDIR /app
