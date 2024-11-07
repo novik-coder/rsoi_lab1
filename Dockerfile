@@ -1,21 +1,25 @@
-# 使用 OpenJDK 基础镜像
-FROM openjdk:17-jdk-slim
+# 使用 Maven 官方镜像作为构建环境
+FROM maven:3.8.6-openjdk-17 AS build
 
 # 设置工作目录
 WORKDIR /app
 
-# 拷贝 pom.xml 和项目依赖文件
-COPY pom.xml .
+# 将源代码拷贝到容器中
+COPY . /app
 
-# 下载依赖并构建项目（会生成 target/ 目录）
-RUN mvn clean install
+# 使用 Maven 构建项目并生成 JAR 文件
+RUN mvn clean package -DskipTests
 
-# 拷贝构建的 JAR 文件
-COPY target/myapp.jar myapp.jar
+# 使用 OpenJDK 作为运行时环境
+FROM openjdk:17-jdk-alpine
 
-# 暴露端口
+# 从构建阶段拷贝生成的 JAR 文件
+COPY --from=build /app/target/myapp.jar /app/myapp.jar
+
+# 公开服务端口
 EXPOSE 8080
 
 # 启动应用
-CMD ["java", "-jar", "myapp.jar"]
+CMD ["java", "-jar", "/app/myapp.jar"]
+
 
