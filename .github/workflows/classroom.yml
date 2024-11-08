@@ -67,8 +67,8 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag your-docker-image-name ${{ secrets.DOCKER_USERNAME }}/your-docker-image-name:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/your-docker-image-name:latest  # 推送 Docker 镜像
+          docker tag imagelab1 ${{ secrets.DOCKER_USERNAME }}/imagelab1:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/imagelab1:latest  # 推送 Docker 镜像
 
       # 继续后续部署到 Render 的步骤（如果有）
       - name: Deploy to Render
