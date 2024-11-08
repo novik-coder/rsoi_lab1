@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/postgres
-    username: postgres
-    password: postgres
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}  # 使用环境变量 DATABASE_URL，如果没有则使用默认值
+    username: ${DB_USERNAME:postgres}  # 从环境变量 DB_USERNAME 读取，如果没有则使用默认值
+    password: ${DB_PASSWORD:postgres}  # 从环境变量 DB_PASSWORD 读取，如果没有则使用默认值
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -10,8 +10,8 @@ spring:
     connection-timeout: 30000
     maximum-pool-size: 10
     minimum-idle: 5
-    hibernate:
-      ddl-auto: update
+  hibernate:
+    ddl-auto: update
     show-sql: true
     properties:
       hibernate:
