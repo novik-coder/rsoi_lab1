@@ -14,6 +14,9 @@ WORKDIR /app
 
 COPY --from=build /app/target/person-api-1.0-SNAPSHOT.jar /app/myapp.jar
 
+ENV DB_USERNAME=sxt_user
+ENV DB_PASSWORD=XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
+
 EXPOSE 8080
 
 CMD ["java", "-jar", "myapp.jar"]
