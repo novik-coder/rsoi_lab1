@@ -13,7 +13,7 @@ COPY src /app/src/
 RUN mvn clean package -DskipTests
 
 # 第二阶段：创建最终镜像
-FROM jdk:8-jdk-slim
+FROM openjdk:8-jdk-slim
 
 # 设置工作目录
 WORKDIR /app
