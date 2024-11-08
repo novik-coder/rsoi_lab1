@@ -71,3 +71,5 @@ jobs:
           environment: postman/[inst][render] Lab1.postman_environment.json
           delayRequest: 100
           reporters: '[ "cli" ]'
+        env:
+            NEWMAN_REPORTER_CLI: 'true'
