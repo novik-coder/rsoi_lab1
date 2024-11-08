@@ -1,5 +1,5 @@
 # 使用官方 Maven 镜像构建应用
-FROM maven:3.9.9-jdk-17 as build
+FROM maven:3.9.9-openjdk-17 as build
 
 # 设置工作目录
 WORKDIR /app
