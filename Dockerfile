@@ -1,5 +1,5 @@
-# 使用 Maven 的官方镜像进行构建
-FROM maven:3.9.0-openjdk-22 as build
+# 使用 Maven 的官方镜像进行构建，选择 OpenJDK 17
+FROM maven:3.9.0-openjdk-17 as build
 
 # 设置工作目录
 WORKDIR /app
@@ -12,13 +12,13 @@ COPY src ./src
 RUN mvn clean install
 
 # 使用 openjdk 镜像作为运行时镜像
-FROM openjdk:22-jdk-slim
+FROM openjdk:17-jdk-slim
 
 # 设置工作目录
 WORKDIR /app
 
-# 复制构建好的 JAR 文件
-COPY --from=build /app/target/myapp.jar /app/myapp.jar
+# 复制构建好的 JAR 文件，假设构建出的文件是 target 目录下的 `myapp.jar`
+COPY --from=build /app/target/person-api-1.0-SNAPSHOT.jar /app/myapp.jar
 
 # 暴露端口
 EXPOSE 8080
