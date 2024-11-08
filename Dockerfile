@@ -1,5 +1,5 @@
 # 使用官方 Maven 镜像构建应用
-FROM maven:3.8.1-jdk-17 as build
+FROM maven:3.9.9-jdk-22 as build
 
 # 设置工作目录
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY src /app/src/
 RUN mvn clean package -DskipTests
 
 # 第二阶段：创建最终镜像
-FROM openjdk:17-jdk-slim
+FROM openjdk:22-jdk-slim
 
 # 设置工作目录
 WORKDIR /app
