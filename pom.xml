@@ -56,28 +56,10 @@
     </dependencies>
 
     <build>
-    <plugins>
-        <!-- Spring Boot 插件 -->
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>2.7.5</version> <!-- 使用与你的 Spring Boot 版本相匹配的插件版本 -->
-        </plugin>
+        <plugins>
+            <!-- Spring Boot 插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactI
 
-        <!-- Maven JAR 插件 -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.1.0</version>
-            <configuration>
-                <archive>
-                    <manifestEntries>
-                        <!-- Main-Class 自动由 Spring Boot 插件管理 -->
-                        <Main-Class>org.springframework.boot.loader.JarLauncher</Main-Class>
-                    </manifestEntries>
-                </archive>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
 
