@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://dpg-csijfkt2ng1s739k8nq0-a:5432/sxt
-    username:sxt_user
-    password:XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
+    username: sxt_user
+    password: XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
