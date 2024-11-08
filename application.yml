@@ -1,20 +1,20 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-csijfkt2ng1s739k8nq0-a:5432/sxt
-    username: sxt_user
-    password: XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
+    url: jdbc:postgresql://dpg-csijfkt2ng1s739k8nq0-a.oregon-postgres.render.com:5432/sxt
+    username: ${DB_USERNAME}   # 从环境变量读取数据库用户名
+    password: ${DB_PASSWORD}   # 从环境变量读取数据库密码
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   hikari:
-    connection-timeout: 30000
-    maximum-pool-size: 10
-    minimum-idle: 5
+    connection-timeout: 30000  # 连接超时，单位是毫秒
+    maximum-pool-size: 10       # 最大连接池大小
+    minimum-idle: 5            # 最小空闲连接数
   hibernate:
-    ddl-auto: update
-    show-sql: true
+    ddl-auto: update           # 自动更新数据库表结构
+    show-sql: true             # 显示 SQL 查询
     properties:
       hibernate:
-        format_sql: true
+        format_sql: true        # 格式化 SQL 查询
   transaction:
-    default-timeout: 30
+    default-timeout: 30        # 默认事务超时，单位为秒
