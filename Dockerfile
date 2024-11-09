@@ -19,4 +19,4 @@ ENV DB_PASSWORD=XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
+CMD ["java", "-jar", "myapp.jar"]
