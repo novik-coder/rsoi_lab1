@@ -61,14 +61,6 @@
             <version>1.6.9</version>
         </dependency>
 
-        <!-- Docker Maven Plugin for Dockerizing the application -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-docker</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <!-- Spring Boot Maven Plugin -->
