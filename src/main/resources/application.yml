@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://dpg-csijfkt2ng1s739k8nq0-a.oregon-postgres.render.com:5432/sxt
-    username: <RENDER_DB_USERNAME>
-    password: <RENDER_DB_PASSWORD>
+    username: sxt_user
+    password: XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
     driver-class-name: org.postgresql.Driver
 
   jpa:
