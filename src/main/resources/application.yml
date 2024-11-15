@@ -3,9 +3,9 @@ spring:
     name: ds
 
   datasource:
-    url: jdbc:postgresql://dpg-crouau5svqrc739liekg-a.oregon-postgres.render.com:5432/postgres_db_qcf9
-    username: user
-    password: PbSHIGyUGqzL4jgp7WCrGGz6LssQmKp1
+    url:  jdbc:postgresql://dpg-csijfkt2ng1s739k8nq0-a.oregon-postgres.render.com:5432/sxt
+    username: sxt_user
+    password: XeoxAOlVSsU5nOZwLQHMsMGOFZq4rEG0
     driver-class-name: org.postgresql.Driver
 
   jpa:
