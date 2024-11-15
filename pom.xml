@@ -1,15 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Spring Boot starter parent version updated to 3.x -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.1</version> <!-- Use the latest compatible version -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.0.1</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.example</groupId>
@@ -60,6 +60,7 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.9</version>
         </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -84,11 +85,11 @@
                 </configuration>
             </plugin>
 
-            <!-- Docker Maven Plugin -->
+            <!-- Dockerfile Maven Plugin to build and push Docker images -->
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.2.0</version>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version> <!-- Replace with the latest stable version -->
                 <executions>
                     <execution>
                         <goals>
@@ -100,4 +101,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
