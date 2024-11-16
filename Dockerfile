@@ -1,13 +1,3 @@
-WORKDIR /app
-
-COPY pom.xml .
-COPY src ./src
-
-RUN mvn clean install
-
-FROM openjdk:17-jdk-slim
-
-WORKDIR /app
 
 # 使用 JRE 运行时环境作为运行镜像
 FROM openjdk:17-alpine
