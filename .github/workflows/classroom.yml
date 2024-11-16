@@ -83,9 +83,14 @@ jobs:
       - name: Deploy to Render
         run: curl https://api.render.com/deploy/srv-css6sbhu0jms73e6pk9g?key=OvsYkimIyy0
 
-      - name: Modify Postman Environment File
-        run: |
-          sed -i 's|"API_URL": ".*"|"API_URL": "${{ secrets.API_URL }}"|' "postman/[inst][local] Lab1.postman_environment.json"
+      - name: dd app URL to Postman environment
+        uses: sergeysova/jq-action@v2
+        id: version
+        with:
+          cmd: >-
+            jq '.values[0].value = "http://${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PORT }}"'
+            < postman/\[inst\]\[render\]\ Lab1.postman_environment.json > out.tmp &&
+            mv out.tmp postman/\[inst\]\[render\]\ Lab1.postman_environment.json
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
