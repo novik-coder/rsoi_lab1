@@ -12,4 +12,4 @@ COPY ./config.json /config.json
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "myapp.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
