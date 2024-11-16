@@ -81,11 +81,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/person-api:latest
 
       - name: Deploy to Render
-        run: |
-          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{"clearCache": false}'
+        run: curl https://api.render.com/deploy/srv-css6sbhu0jms73e6pk9g?key=OvsYkimIyy0
 
       - name: Modify Postman Environment File
         run: |
