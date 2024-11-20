@@ -39,8 +39,14 @@ public class PersonController {
         Optional<Person> person = personService.getPersonById(id);
 
         System.out.println("getPersonById: " + person.get().toString());
-        return person.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        // 先检查 Optional 是否有值
+        if (person.isPresent()) {
+            System.out.println("getPersonById: " + person.get().toString());
+            return ResponseEntity.ok(person.get());  // 返回找到的 Person 对象
+        } else {
+            // 如果没有找到，返回 404 状态码
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     // 创建新记录
