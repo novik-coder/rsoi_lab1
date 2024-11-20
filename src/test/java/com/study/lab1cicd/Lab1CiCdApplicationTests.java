@@ -42,7 +42,7 @@ class Lab1CiCdApplicationTests {
 	@BeforeEach
 	void setUp() {
 		person = new Person();
-		person.setId(1L);
+		person.setPersonId(1L);
 		person.setName("John Doe");
 		person.setAge(30);
 

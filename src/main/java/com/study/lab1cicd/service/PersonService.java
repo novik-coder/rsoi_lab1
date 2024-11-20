@@ -30,7 +30,7 @@ public class PersonService {
 
     public Optional<Person> updatePerson(Long id, Person person) {
         if (personRepository.existsById(id)) {
-            person.setId(id);
+            person.setPersonId(id);
             return Optional.of(personRepository.save(person));
         } else {
             return Optional.empty();

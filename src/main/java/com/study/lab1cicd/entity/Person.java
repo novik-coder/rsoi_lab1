@@ -9,16 +9,19 @@ import jakarta.persistence.Id;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // 或 GenerationType.AUTO
-    private Long id;
+    private Long personId;
 
     private String name;
     private int age;
 
+    private String address;
+    private String work;
+
     public Person() {
     }
 
-    public Person(Long id,String name, int age) {
-        this.id=id;
+    public Person(Long personId,String name, int age) {
+        this.personId=personId;
         this.name=name;
         this.age=age;
     }
@@ -26,12 +29,28 @@ public class Person {
     // Getters and Setters
 
 
-    public Long getId() {
-        return id;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getWork() {
+        return work;
+    }
+
+    public void setWork(String work) {
+        this.work = work;
     }
 
     public String getName() {

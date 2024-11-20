@@ -42,7 +42,7 @@ public class PersonController {
     public ResponseEntity<Void> createPerson(@RequestBody Person person) {
         Person createdPerson = personService.createPerson(person);
         return ResponseEntity
-                .created(URI.create("/api/v1/persons/" + createdPerson.getId()))
+                .created(URI.create("/api/v1/persons/" + createdPerson.getPersonId()))
                 .build();
     }
 
