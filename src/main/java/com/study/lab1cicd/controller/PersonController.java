@@ -25,6 +25,8 @@ public class PersonController {
     @GetMapping
     public ResponseEntity<List<Person>> getAllPersons() {
         List<Person> persons = personService.getAllPersons();
+        System.out.println("getAllPersons: " +persons.size());
+
         if (persons.isEmpty()) {
             return ResponseEntity.noContent().build();  // 返回 204 No Content 如果没有数据
         }
@@ -35,6 +37,8 @@ public class PersonController {
     @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable("id") Long id) {
         Optional<Person> person = personService.getPersonById(id);
+
+        System.out.println("getPersonById: " + person.get().toString());
         return person.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
