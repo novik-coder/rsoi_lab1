@@ -31,6 +31,23 @@ jobs:
         with:
           name: app-jar
           path: target/*.jar
+  api-test:
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 运行 Postman API 测试
+      - name: Run Postman API Tests
+        uses: matt-ball/newman-action@master
+        with:
+          collection: ./postman/Lab1.postman_collection.json
+          environment: ./postman/Lab1.postman_environment.json
+          delayRequest: 108
+          reporters: '[ "cli" ]'
 
   deploy:
     needs: build-test
