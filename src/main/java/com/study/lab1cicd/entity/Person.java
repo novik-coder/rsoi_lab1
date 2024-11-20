@@ -29,7 +29,7 @@ public class Person {
     // Getters and Setters
 
 
-    public Long getpersonId() {
+    public Long getPersonId() {
         return personId;
     }
 
