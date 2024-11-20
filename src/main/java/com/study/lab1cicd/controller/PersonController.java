@@ -61,8 +61,12 @@ public class PersonController {
     // 更新现有记录
     @PatchMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable("id") Long id, @RequestBody Person person) {
+
+
+        System.out.println("更新前"+person.toString());
         // 调用服务层进行更新
         Optional<Person> updatedPerson = personService.updatePerson(id, person);
+        System.out.println("更新后"+updatedPerson.get().toString());
 
         // 如果找到了更新后的 Person，返回 200 状态码和更新后的 Person 对象
         if (updatedPerson.isPresent()) {
