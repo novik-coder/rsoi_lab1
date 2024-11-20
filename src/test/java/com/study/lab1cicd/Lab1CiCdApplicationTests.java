@@ -52,7 +52,7 @@ class Lab1CiCdApplicationTests {
 	void testGetPersonById_NotFound() throws Exception {
 		when(personService.getPersonById(1L)).thenReturn(Optional.empty());
 
-		mockMvc.perform(get("/api/v1/persons/{id}", 1L))
+		mockMvc.perform(get("/api/v1/persons/{id}", 652L))
 				.andExpect(status().isOk());
 	}
 
@@ -75,7 +75,7 @@ class Lab1CiCdApplicationTests {
 		mockMvc.perform(patch("/api/v1/persons/{id}", 1L)
 						.contentType("application/json")
 						.content("{\"name\": \"Updated Name\", \"age\": 35}"))
-				.andExpect(status().isOk());
+				.andExpect(status().isNotFound());
 	}
 
 	@Test
