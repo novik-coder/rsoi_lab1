@@ -44,6 +44,11 @@ jobs:
       # 列出 postman 文件夹内容
       - name: List files in postman directory
         run: ls -al ./postman
+      # 等待服务启动
+      - name: Wait for service to be ready
+        run: |
+          echo "Waiting for service to start..."
+          sleep 20 # 根据实际启动时间调整
 
       # 运行 Postman API 测试
       - name: Run Postman API Tests
