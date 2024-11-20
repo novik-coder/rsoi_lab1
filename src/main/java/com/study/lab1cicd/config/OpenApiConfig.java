@@ -14,6 +14,6 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Person API").version("v1").description("API for managing persons"))
-                .addServersItem(new Server().url("http://localhost:8080"));
+                .addServersItem(new Server().url("https://cicd-lab1-app-gw0a.onrender.com"));
     }
 }
