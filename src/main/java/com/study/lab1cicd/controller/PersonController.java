@@ -59,7 +59,7 @@ public class PersonController {
         Optional<Person> person = personService.getPersonById(id);
         if (person.isPresent()) {
             personService.deletePerson(id);
-            return ResponseEntity.noContent().build(); // 204 No Content
+            return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
