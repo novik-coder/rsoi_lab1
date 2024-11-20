@@ -22,19 +22,20 @@ public class PersonController {
 
     // 获取所有人的信息
     @GetMapping
-    public List<Person> getAllPersons() {
-        return personService.getAllPersons();
+    public ResponseEntity<List<Person>> getAllPersons() {
+        List<Person> persons = personService.getAllPersons();
+        if (persons.isEmpty()) {
+            return ResponseEntity.noContent().build();  // 返回 204 No Content 如果没有数据
+        }
+        return ResponseEntity.ok(persons);  // 返回 200 OK 和数据
     }
 
     // 获取指定ID的人员信息
     @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable("id") Long id) {
         Optional<Person> person = personService.getPersonById(id);
-        if (person.isPresent()) {
-            return ResponseEntity.ok(person.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return person.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     // 创建新记录
@@ -49,8 +50,16 @@ public class PersonController {
     // 更新现有记录
     @PatchMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable("id") Long id, @RequestBody Person person) {
+        // 调用服务层进行更新
         Optional<Person> updatedPerson = personService.updatePerson(id, person);
-        return updatedPerson.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+
+        // 如果找到了更新后的 Person，返回 200 状态码和更新后的 Person 对象
+        if (updatedPerson.isPresent()) {
+            return ResponseEntity.ok(updatedPerson.get());
+        }
+
+        // 如果没有找到对应的 Person，返回 404 NOT FOUND
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     // 删除指定ID的记录
@@ -59,7 +68,7 @@ public class PersonController {
         Optional<Person> person = personService.getPersonById(id);
         if (person.isPresent()) {
             personService.deletePerson(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }

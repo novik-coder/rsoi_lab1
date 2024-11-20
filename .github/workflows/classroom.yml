@@ -48,7 +48,7 @@ jobs:
       - name: Wait for service to be ready
         run: |
           echo "Waiting for service to start..."
-          sleep 120 # 根据实际启动时间调整
+          sleep 80 # 根据实际启动时间调整
 
       # 运行 Postman API 测试
       - name: Run Postman API Tests
