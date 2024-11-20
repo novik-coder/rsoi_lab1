@@ -66,10 +66,10 @@ public class PersonController {
         System.out.println("更新前"+person.toString());
         // 调用服务层进行更新
         Optional<Person> updatedPerson = personService.updatePerson(id, person);
-
+        System.out.println("更新后"+updatedPerson.get().toString());
         // 如果找到了更新后的 Person，返回 200 状态码和更新后的 Person 对象
         if (updatedPerson.isPresent()) {
-            System.out.println("更新后"+updatedPerson.get().toString());
+            
 
             return ResponseEntity.ok(updatedPerson.get());
         }
