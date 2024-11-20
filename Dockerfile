@@ -1,15 +1,15 @@
 
-# 使用 JRE 运行时环境作为运行镜像
-FROM openjdk:17-alpine
-USER root
+# 使用官方的 Java 镜像作为基础镜像
+FROM openjdk:17-jdk-slim
+
 # 设置工作目录
 WORKDIR /app
-# 从 builder 镜像中复制构建好的 JAR 文件到运行时镜像
-COPY ./app.jar /app/app.jar
-COPY ./config.json /app/config.json
-COPY ./config.json /config.json
 
+# 定义构建参数
+ARG JAR_FILE
 
-EXPOSE 8080
+# 将 JAR 文件复制到容器中
+COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# 运行 Java 应用
+ENTRYPOINT ["java", "-jar", "app.jar"]
