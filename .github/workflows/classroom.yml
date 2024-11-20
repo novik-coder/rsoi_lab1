@@ -39,6 +39,11 @@ jobs:
       # 检出代码
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: List files in current directory
+        run: ls -al
+      # 列出 postman 文件夹内容
+      - name: List files in postman directory
+        run: ls -al ./postman
 
       # 运行 Postman API 测试
       - name: Run Postman API Tests
