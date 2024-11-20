@@ -56,7 +56,12 @@ public class PersonController {
     // 删除指定ID的记录
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePerson(@PathVariable("id") Long id) {
-        boolean isDeleted = personService.deletePerson(id);
-        return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        Optional<Person> person = personService.getPersonById(id);
+        if (person.isPresent()) {
+            personService.deletePerson(id);
+            return ResponseEntity.noContent().build(); // 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
     }
 }
