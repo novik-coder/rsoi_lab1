@@ -70,5 +70,5 @@ jobs:
       - name: Deploy to production
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          service-id: srv-csurdvi3esus73cmipu0 # Render服务ID
+          service-id: srv-css6sbhu0jms73e6pk9g # Render服务ID
           api-key: ${{ secrets.RENDER_API_KEY }} # Render API 密钥
