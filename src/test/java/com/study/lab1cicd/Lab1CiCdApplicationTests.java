@@ -96,4 +96,4 @@ class Lab1CiCdApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].name").value("John Doe"));
 	}
-}
+} 
